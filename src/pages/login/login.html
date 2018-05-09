@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="azul" padding>
+    <div id="Imagen">
+        <img src="assets/imgs/blitz.png">
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card class="card" padding>
+            <div id="Imagenlog">
+                <img src="assets/imgs/police.png">
+            </div>
+            <form #form="ngForm" novalidate>
+            <div class="list">
+
+                <ion-item>
+                  <ion-label floating>Email</ion-label>
+                  <ion-input type="text" name="email" [(ngModel)]="user.email" #email="ngModel" required></ion-input>
+                </ion-item>
+
+                <ion-item *ngIf="email.errors && (email.dirty || email.touched)" class="text-danger">
+                  O campo usuario é obrigatorio.
+                </ion-item>
+              
+                <ion-item>
+                  <ion-label floating>Senha</ion-label>
+                  <ion-input type="password" name="password" [(ngModel)]="user.password" #password="ngModel" required></ion-input>
+                </ion-item>
+                <ion-item *ngIf="password.errors && (password.dirty || password.touched)" class="text-danger">
+                  O campo senha é obrigatorio
+                </ion-item>
+              
+            </div>
+            </form>
+              <div padding>
+                <button ion-button block color="azul" [disabled]="!form.form.valid" (click)="singIn('AdmListPage')" >Entrar</button>
+              </div>
+      </ion-card>
+</ion-content>

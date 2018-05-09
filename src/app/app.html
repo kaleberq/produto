@@ -1,0 +1,35 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar color="azul" padding>
+        <div id="imagenlog">
+                <img src="assets/imgs/user.png"> 
+        </div>
+        
+        <p class="email-text">{{email}}</p>
+        
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="menu-content myBg">
+      <ion-list class="cars">
+          <button ion-item menuClose color="azul" *ngFor="let p of pages" (click)="openPage(p)">
+            <ion-icon name="car" md="md-car" item-start></ion-icon>
+            {{p.title}}
+          </button>
+      </ion-list>
+
+      <ion-list class="sair">
+            <button ion-item menuClose color="azul" (click)="presentConfirm()">
+              <ion-icon name="arrow-back" item-start></ion-icon>
+              Sair
+            </button>
+      </ion-list>
+  </ion-content>
+  <ion-footer>
+    <div id="ImgBlitz">
+        <img src="assets/imgs/blitz.png">
+    </div>
+  </ion-footer>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
