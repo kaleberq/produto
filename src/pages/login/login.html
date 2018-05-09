@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="azul" padding>
+    <div id="Imagen">
+        <img src="assets/imgs/blitz.png">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card" padding>
+        <div id="Imagenlog">
+            <img src="assets/imgs/carro.png">
+        </div>
+    <ion-list>
+
+    <ion-item>
+      <ion-label floating>Usuário</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="senha"></ion-input>
+    </ion-item>
+    
+    <button block ion-button (click)="login('CategoriaPage')">Login</button>
+  
+  
+    </ion-list>
+  </ion-card>
+</ion-content>
