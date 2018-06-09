@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { CategoriaProvider } from '../../providers/categoria/categoria';
 import { CategoriaDto} from '../../Model/categoriaDto';
 
@@ -21,10 +21,13 @@ export class CategoriaPage {
   categoriaDto : CategoriaDto;
   mensagem : String = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-      public categoriaProvider : CategoriaProvider,
-      private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public categoriaProvider : CategoriaProvider,
+              private alertCtrl: AlertController,
+              public menuCtrl: MenuController) {
 
+        this.menuCtrl.enable(true, 'myMenu')
         this.limparTela();
         this.carregarCategorias();
   }

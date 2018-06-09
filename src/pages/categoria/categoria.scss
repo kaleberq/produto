@@ -1,3 +1,80 @@
 page-categoria {
+    #IconPlus{
+        max-width:85px;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+       .lista {
+        padding: 10px;
+        margin-top: 0px;
+        
     
+        .border-item1 {
+          border-left-width: 5px;
+          border-left-style: solid;
+          border-radius: 5px;
+          color: red;
+        }
+        .border-item2 {
+          border-left-width: 5px;
+          border-left-style: solid;
+          border-radius: 5px;
+          color: green;
+        }
+    
+        .item {
+          height: 80px;
+          margin-bottom: 10px;
+          padding-left: 10px;
+          font-size: 1.4rem;
+        }
+    
+        .row {
+          font-family: Arial;
+        }
+    
+        .row1 {
+          font-size: 1.5rem;
+          font-weight: bold;
+          text-transform: uppercase;
+          color: black;
+          margin-top: 10px;
+        
+    
+          .title-overflow {
+            overflow: auto;
+            text-overflow: ellipsis;
+          }
+          .direita{
+            padding-left: 235px;
+          }
+        }
+        
+
+    
+        .row2 {
+          font-size: 1.1rem;
+          text-transform: uppercase;
+          color: black;
+        }
+    
+        .row3 {
+          font-size: 1rem;
+          color: black;
+          margin-top: 6px;
+        }
+
+        #tipo {
+          margin-left: 10px;
+        }
+        
+        #tipo2 {
+          margin-left: 5.5px;
+        }
+        .buttonPopover {
+          background-color: transparent;
+          margin-left: 30px;
+        }
+      }
 }

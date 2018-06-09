@@ -11,8 +11,8 @@
         <div id="Imagenlog">
             <img src="assets/imgs/carro.png">
         </div>
-    <ion-list>
-
+    
+    <div *ngIf = "!texto">
     <ion-item>
       <ion-label floating>Usuário</ion-label>
       <ion-input type="text" [(ngModel)]="usuario"></ion-input>
@@ -24,8 +24,19 @@
     </ion-item>
     
     <button block ion-button (click)="login('CategoriaPage')">Login</button>
-  
-  
-    </ion-list>
+  </div>
+
+  <div *ngIf = "texto">
+    <ion-item>
+      <ion-label floating>Senha Curta</ion-label>
+      <ion-input type="password" [(ngModel)]="senhaCurta"></ion-input>
+    </ion-item>
+
+    <button block ion-button (click)="cadastrarSenhaCurta()">Entrar com senha Curta</button>
+
+  </div>
   </ion-card>
+
 </ion-content>
+
+

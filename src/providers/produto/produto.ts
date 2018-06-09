@@ -32,6 +32,7 @@ export class ProdutoProvider {
                 ' idCategoria = ' + produtoDto.idCategoria + ' , ' + 
                 ' ativo = ' + ativo + ' , ' +
                 ' fotoProduto = "' + produtoDto.fotoProduto + '", ' +
+                ' codigoBarra = "' + produtoDto.codigoBarra+ '", ' +
                 ' dataValidadeProduto = "' + produtoDto.dataValidadeProduto.substring(0,10) + '",' +
                 ' quantidadeEstoque = ' + produtoDto.quantidadeEstoque +                 
                 ' where idProduto = ' + produtoDto.idProduto;
@@ -52,9 +53,9 @@ export class ProdutoProvider {
       return this.dbProvider.getDB()
       .then((db: SQLiteObject) => { 
         let sql = 'insert into produto (nomeProduto,valorProduto,' + 
-          'idCategoria, quantidadeEstoque, ativo, fotoProduto, ' +
+          'idCategoria, quantidadeEstoque, ativo, fotoProduto, codigoBarra,' +
           ' dataValidadeProduto) ' +
-           ' values (?, ?, ?, ?, ?, ?, ?)';
+           ' values (?, ?, ?, ?, ?, ?, ?, ?)';
         return db.executeSql(sql, 
           [produtoDto.nomeProduto, 
           produtoDto.valorProduto,
@@ -62,6 +63,7 @@ export class ProdutoProvider {
           produtoDto.quantidadeEstoque, 
           produtoDto.ativo,
           produtoDto.fotoProduto,
+          produtoDto.codigoBarra,
           produtoDto.dataValidadeProduto.substring(0,10)])
           .then((data: any) => {
           }).catch((e) => {return("Erro (1) " + e)});
@@ -112,7 +114,7 @@ export class ProdutoProvider {
     let sql = "select * from produto order by nomeProduto";
     if (nomeProduto.trim() != "")
        sql = "select * from produto " + 
-             " where nomeProduto like '%" + nomeProduto.trim() + 
+             " where codigoBarra like '%" + nomeProduto.trim() + 
              "%' order by nomeProduto";
 
     return this.dbProvider.getDB()
@@ -149,6 +151,7 @@ export class ProdutoProvider {
       produtoDto.quantidadeEstoque = item.quantidadeEstoque;
       produtoDto.dataValidadeProduto = item.dataValidadeProduto.toString();
       produtoDto.fotoProduto = item.fotoProduto;
+      produtoDto.codigoBarra = item.codigoBarra;
       produtoDto.ativo = item.ativo;
 
       return produtoDto;

@@ -24,18 +24,25 @@
       </form>
  
       <h5>Lista de Categorias</h5> 
-      <ion-list>
-        <ion-item *ngFor="let categoriaDto of categorias">            
+      <ion-list class="lista">
+            <ion-item *ngFor="let categoriaDto of categorias"  color="lista" class="border-item2" >  
+                    <ion-grid no-padding no-margin>
+                            <ion-row class="row1">
+                                <ion-col col-10 class="title-overflow">{{categoriaDto.descricao}} </ion-col>
+
+                                    <button class="esquerda" ion-button  clear small icon-only color="blue" (click)="editar(categoriaDto)">
+                                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                    </button>      
+                                
+                                    <button class="direita" ion-button  clear small icon-only color="danger" (click)="excluir(categoriaDto)">
+                                        <ion-icon name="trash"></ion-icon>
+                                    </button>
+                               
+                            </ion-row>
+                    </ion-grid>          
              
-            <button ion-button  clear small icon-only color="blue" (click)="editar(categoriaDto)">
-              <ion-icon name="checkmark-circle-outline"></ion-icon>
-            </button>             
-            <button ion-button  clear small icon-only color="danger" (click)="excluir(categoriaDto)">
-              <ion-icon name="trash"></ion-icon>
-            </button>
-         
-            {{categoriaDto.descricao}}                
-        </ion-item>
-      </ion-list>
+                               
+            </ion-item>
+          </ion-list>
  
 </ion-content>

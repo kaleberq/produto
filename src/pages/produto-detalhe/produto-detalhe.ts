@@ -5,6 +5,8 @@ import { IonicPage, NavController, NavParams,
 import { ProdutoDto} from '../../Model/produtoDto';
 import { CategoriaDto} from '../../Model/categoriaDto';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+
 /**
  * Generated class for the ProdutoDetalhePage page.
  *
@@ -30,7 +32,9 @@ export class ProdutoDetalhePage {
         public viewCtrl: ViewController, 
         public navParams: NavParams,
         private alertCtrl: AlertController,
-        private camera: Camera) {
+        private camera: Camera,
+        private barcodeScanner: BarcodeScanner,
+      ) {
           
         this.montarTela();         
            
@@ -59,6 +63,7 @@ export class ProdutoDetalhePage {
         this.produtoDto.idProduto = 0;
         this.produtoDto.ativo = true;
         this.produtoDto.fotoProduto = ""; 
+        this.produtoDto.codigoBarra = "";
         let now = new Date();
         this.produtoDto.dataValidadeProduto = now.toISOString();                        
     }
@@ -201,6 +206,29 @@ export class ProdutoDetalhePage {
           this.alerta(err.toString(), "Atenção");
           }
       ); 
+  }
+
+  ler(){
+    this.barcodeScanner.scan(
+      {
+          "prompt" : "Lendo",
+          "orientation" : "landscape"
+      })
+      .then(barcodeData => {
+        this.produtoDto.codigoBarra = barcodeData.text;
+      })
+      .catch(err => {
+        this.showAlert(err);
+      })
+  }
+
+  showAlert(mensagem){
+    let alert = this.alertCtrl.create({
+      title: 'Atenção!',
+      subTitle: mensagem,
+      buttons: ['OK']
+    });
+    alert.present();
   }
   
 }

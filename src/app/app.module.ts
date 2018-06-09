@@ -11,7 +11,9 @@ import { CategoriaProvider } from '../providers/categoria/categoria';
 import { DatabaseProvider } from '../providers/database/database';
 import { ProdutoProvider } from '../providers/produto/produto';
 import { SQLite } from '@ionic-native/sqlite';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { File as FileManager } from '@ionic-native/file';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
     DatabaseProvider,
     ProdutoProvider,
     SQLite,
-    Camera
+    Camera,
+    BarcodeScanner,
+    FileManager
   ]
 })
 export class AppModule {}

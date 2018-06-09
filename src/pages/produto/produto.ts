@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,
-     ModalController, AlertController } from 'ionic-angular';
+     ModalController, AlertController, MenuController} from 'ionic-angular';
 import { ProdutoDto} from '../../Model/produtoDto';
 import { ProdutoProvider } from '../../providers/produto/produto';
 import { CategoriaProvider } from '../../providers/categoria/categoria';
 import { CategoriaDto} from '../../Model/categoriaDto';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 /**
  * Generated class for the ProdutoPage page.
  *
@@ -20,7 +21,9 @@ import { CategoriaDto} from '../../Model/categoriaDto';
 export class ProdutoPage {
 
   //produtos : Array<ProdutoDto>;
+  produtoDto : ProdutoDto 
   nomeProduto:String="";
+  codigoBarra:String="";
   produtos : Array<ProdutoDto>;
   mensagem : String = "Produtos: ";
 
@@ -31,9 +34,12 @@ export class ProdutoPage {
      public alertCtrl : AlertController,
      public produtoProvider : ProdutoProvider,
      public categoriaProvider : CategoriaProvider,
-     public modalCtrl : ModalController) {
-       
-    
+     public modalCtrl : ModalController,
+     private barcodeScanner: BarcodeScanner,
+     public menuCtrl: MenuController,
+    ) {
+
+     this.menuCtrl.enable(true, 'myMenu');  
      this.montarTela();
       
   }
@@ -161,13 +167,8 @@ export class ProdutoPage {
   pesquisar() {
     let prompt = this.alertCtrl.create({
       title: 'Atenção',
-      message: "Informe o nome do produto",
-      inputs: [
-        {
-          name: 'Produto',
-          placeholder: 'Nome do produto'
-        },
-      ],
+      message: "Informe o código de barras do produto",
+      
       buttons: [
         {
           text: 'Cancelar',
@@ -177,11 +178,22 @@ export class ProdutoPage {
           }
         },
         {
-          text: 'Pesquisar',
+          text: 'Escanear',
           handler: data => {
-            this.nomeProduto = data.Produto;
-            this.carregarProdutos();
-          }
+            this.barcodeScanner.scan(
+              {
+                  "prompt" : "Lendo",
+                  "orientation" : "landscape"
+              })
+              .then(data => {
+                this.nomeProduto = data.text;
+                this.carregarProdutos();
+              })
+              .catch(err => {
+                this.showAlert(err);
+              })
+          },
+          
         }
       ]
     });
@@ -198,6 +210,15 @@ export class ProdutoPage {
     });
     alert.present();
 
+  }
+
+  showAlert(mensagem){
+    let alert = this.alertCtrl.create({
+      title: 'Atenção!',
+      subTitle: mensagem,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

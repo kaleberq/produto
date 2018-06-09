@@ -1,17 +1,19 @@
-<ion-menu [content]="content">
+<ion-menu id="myMenu" [content]="content">
         <ion-header>
           <ion-toolbar color="azul" padding>
               <div id="imagenlog">
                       <img src="assets/imgs/user.png"> 
               </div>
+              <p class="email-text">Kalebe Misael Santos e Silva</p>
           </ion-toolbar>
         </ion-header>
         <ion-content class="menu-content myBg">
-            <ion-list class="cars" no-lines>
-                <button ion-item menuClose color="azul" *ngFor="let p of pages" (click)="openPage(p)">
-                    {{p.title}}
-                </button>
-            </ion-list>
+                <ion-list class="cars" no-lines>
+                        <button ion-item menuClose color="azul" *ngFor="let p of pages" (click)="openPage(p)">
+                          <ion-icon name="car" md="md-car" item-start></ion-icon>
+                          {{p.title}}
+                        </button>
+                    </ion-list>
             <ion-list class="sair">
                 <button ion-item menuClose color="azul" (click)="presentConfirm()">
                     <ion-icon name="arrow-back" item-start></ion-icon>
@@ -20,9 +22,11 @@
             </ion-list>
         </ion-content>
         <ion-footer>
+            <ion-toolbar color="azul">
             <div id="ImgBlitz">
                 <img src="assets/imgs/blitz.png">
             </div>
+            </ion-toolbar>
         </ion-footer>
 </ion-menu>
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

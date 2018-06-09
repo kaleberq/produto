@@ -8,7 +8,7 @@ export class ProdutoDto {
     private _Ativo: Boolean;
     private _DataValidadeProduto: String;
     private _FotoProduto: String;
-    private _CodigoBarraProduto: Number;
+    private _CodigoBarra: String;
 
   //  private _HoraValidadeProduto: String;
   //  
@@ -47,8 +47,8 @@ export class ProdutoDto {
       return this._FotoProduto ;
       }
 
-    get codigoBarraProduto () : Number {
-      return this._CodigoBarraProduto ;
+    get codigoBarra () : String {
+      return this._CodigoBarra ;
       }
 
     /*
@@ -97,9 +97,9 @@ export class ProdutoDto {
       this._FotoProduto  = p;
     }
 
-    set codigoBarraProduto (p:Number)
+    set codigoBarra (p:String)
     {
-      this._CodigoBarraProduto = p;
+      this._CodigoBarra = p;
     }
     
     /*
